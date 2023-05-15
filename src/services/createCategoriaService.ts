@@ -3,9 +3,7 @@ import { CategoriaRepository } from "../repository/categoriaRepository";
 
 
 class CreateCategoriaService {
-    constructor(private categoriaRepository: CategoriaRepository) {
-
-    }
+    constructor(private categoriaRepository: CategoriaRepository) {}
 
     execute({nome, descricao}){
         const categoriaAlreadyExists = this.categoriaRepository.findByNome( nome );
@@ -15,7 +13,6 @@ class CreateCategoriaService {
         // return  res.status(StatusCode.NEGOCIO).json( dataResponse( categoriaAlreadyExists, StatusCode.NEGOCIO)  );
     }
     this.categoriaRepository.create({ nome, descricao });
-
     }
 }
 

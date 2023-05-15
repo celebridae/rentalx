@@ -5,6 +5,7 @@ import { v4 as uuidV4 } from "uuid";
 import { Categoria }  from "../model/categoria";
 import { CategoriaRepository } from "../repository/categoriaRepository";
 import { StatusCode } from '../enum/statusCode';
+import { CreateCategoriaService } from '../services/createCategoriaService';
 
 
 const categoriaRouter = Router();
@@ -45,12 +46,14 @@ categoriaRouter.get('/categorias', (req, res) => {
 
 categoriaRouter.post('/categoria', (req, res) => {
     const { nome, descricao } = req.body;
-    const categoriaAlreadyExists = categoriaRepository.findByNome( nome );
-    if( categoriaAlreadyExists){
-        return  res.status(StatusCode.NEGOCIO).json( dataResponse( categoriaAlreadyExists, StatusCode.NEGOCIO)  );
-    }
-    categoriaRepository.create({ nome, descricao });
-    return res.status(200).json( dataResponse( { nome, descricao } , 200) );
+    // const categoriaAlreadyExists = categoriaRepository.findByNome( nome );
+    // if( categoriaAlreadyExists){
+    //     return  res.status(StatusCode.NEGOCIO).json( dataResponse( categoriaAlreadyExists, StatusCode.NEGOCIO)  );
+    // }
+    // categoriaRepository.create({ nome, descricao });
+    const createCategoriaService = new CreateCategoriaService( categoriaRepository );
+    createCategoriaService.execute({ nome, descricao });
+    return res.status(StatusCode.OK).json( dataResponse( { nome, descricao } , StatusCode.OK) );
   });
 
   categoriaRouter.delete('/categoria', (req, res) => {
