@@ -1,18 +1,26 @@
-import { StatusCode } from "../enum/statusCode";
+
+// ^Regras de negocio do sistema
+// 
+import * as statusCode from "../enum/statusCode";
+import { ICategoriaRepository } from "../repository/ICategoriaRepository";
 import { CategoriaRepository } from "../repository/categoriaRepository";
 
 
 class CreateCategoriaService {
-    constructor(private categoriaRepository: CategoriaRepository) {}
+    constructor(private categoriaRepository: ICategoriaRepository) { }
+    // constructor(private categoriaRepository: CategoriaRepository) { }
 
-    execute({nome, descricao}){
-        const categoriaAlreadyExists = this.categoriaRepository.findByNome( nome );
-    if( categoriaAlreadyExists){
-        throw new Error("Categoria já existe");
-        // throw new AppError("Categoria já existe", StatusCode.BAD_REQUEST);
-        // return  res.status(StatusCode.NEGOCIO).json( dataResponse( categoriaAlreadyExists, StatusCode.NEGOCIO)  );
+    execute({ nome, descricao }) {
+        const categoriaAlreadyExists = this.categoriaRepository.findByNome(nome);
+        if (categoriaAlreadyExists) {
+            throw new Error("Categoria já existe");
+        }
+        this.categoriaRepository.create({ nome, descricao });
     }
-    this.categoriaRepository.create({ nome, descricao });
+
+    list(){
+        return this.categoriaRepository.findAll();
+
     }
 }
 

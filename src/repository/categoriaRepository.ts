@@ -1,11 +1,12 @@
 // Permitem a manipulacao de dados desde a insercao, listagem remocao e outros
 
+import { ICategoriaDTO } from "../DTO/ICategoriaDTO";
 import { Categoria } from "../model/categoria";
 
-interface ICategoriaDTO{
-    nome:string;
-    descricao:string;
-}
+// interface ICategoriaDTO{
+//     nome:string;
+//     descricao:string;
+// }
 
 class CategoriaRepository {
 
