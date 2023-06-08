@@ -1,0 +1,64 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title":"Documentation for API- RENTAX",
+        "description": "rentalx Documentation API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "cesar.teste2018@gmail.com"
+        }
+    },
+    "paths": {
+        "/categoria":{
+            "post":{
+                "tags": ["categorias"],
+                "summary": "Criar Categoria",
+                "description":"Criar uma nova categoria",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "descricao": {
+                                        "type": "string"
+                                    }                                   
+                                },
+                                "exemple": {
+                                    "name": "categoria nome simple",
+                                    "description": "categoria nome simple"
+                                }
+                            }
+                        }
+                       
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Operação realizada com sucesso"
+                    },
+                    "500":{
+                        "description": "Categoria já existe"
+                    }
+                }
+            },
+            "get":{
+                "tags": ["categorias"],
+                "summary": "Listar Categoria",
+                "description":"Listar as categoria existente",
+
+                "responses": {
+                    "200":{
+                        "description": "Operação realizada com sucesso"
+                    },
+                    "500":{
+                        "description": "Categoria já existe"
+                    }
+                }
+            }
+        }
+    }
+}

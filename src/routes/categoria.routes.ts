@@ -20,7 +20,7 @@ const categoriaRouter = Router();
 const categoriaRepository = PostgresCategoriaRepository.getInstance();
 
 
-categoriaRouter.get('/categorias', (req, res) => {
+categoriaRouter.get('/categoria', (req, res) => {
     // if( categoriaRepository.findAll().length > 0 ) {
     //    return  res.status(StatusCode.OK).json( ResponseDate.dataResponse( categoriaRepository.findAll() , StatusCode.OK, categoriaRepository.findAll().length) );
     // }
