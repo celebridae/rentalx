@@ -26,13 +26,13 @@ class CreateCategoriaController {
         const stream = fs.createReadStream( file.path );
 
         // const parseFile = csvParse()
-        const parseFile = csvParse({
-            delimiter: ':'
-          });
-        stream.pipe( parseFile );
-        parseFile.on("data", p => console.log(p))
-        //console.log( stream.);
-        // stream.pipe().on(p => p);
+        // const parseFile = csvParse({
+        //     delimiter: ':'
+        //   });
+        // stream.pipe( parseFile );
+        // parseFile.on("data", p => console.log(p))
+        console.log( stream );
+        //stream.pipe().on(p => p);
         return response.status(StatusCode.OK).json( ResponseDate.dataResponse( file , StatusCode.OK, this.createCategoriaService.list().length) );
 
     }
