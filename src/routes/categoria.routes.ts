@@ -7,6 +7,13 @@ import { ResponseDate } from '../shared/responseDate';
 import { PostgresCategoriaRepository } from "../repository/PostgresCategoriaRepository";
 import { createCategoriaController } from "../useCases/createCategoria";
 
+
+import multer from "multer";
+
+const upload = multer({
+    dest: './tmp'
+});
+
 const categoriaRouter = Router();
 //const categoriaRepository = new CategoriaRepository();
 // const categoriaRepository = new PostgresCategoriaRepository
@@ -35,7 +42,15 @@ categoriaRouter.post('/categoria', (req, res) => {
     const categoria = new Categoria();
     categoriaRepository.delete( categoria );
     return res.status(StatusCode.OK).json( ResponseDate.dataResponse( { nome } , StatusCode.OK) );
-  })
+  });
+
+  // Upload de filcheiros
+
+  categoriaRouter.post('/categoria/upload', upload.single('file'), (req, res) => {
+    // const {file} = req;
+    // return res.status(StatusCode.OK).json( ResponseDate.dataResponse( { file }, StatusCode.OK) );
+    return createCategoriaController.importfile( req, res );
+  });
 
 
   export default categoriaRouter;
